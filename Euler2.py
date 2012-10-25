@@ -1,5 +1,3 @@
-# Testing for a new commit
-
 # Sum the even values of the Fibonacci sequence
 # Consider only terms < 4*10^6
 
