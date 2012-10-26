@@ -41,11 +41,11 @@ def factors(n):
     return factors
 
 # Tests to see if a number is pandigital
-def ispandigital(n)
+def ispandigital(n):
     isp = 0
     iarr = int2array(n)
     iarr.sort()
     iarrs = list(set(iarr))
-    if len(iarr) == len(iarrs)
+    if (len(iarr) == len(iarrs)):
         isp = 1
     return isp
