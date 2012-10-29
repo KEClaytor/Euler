@@ -1,4 +1,5 @@
 import math
+from itertools import izip
 
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
@@ -49,3 +50,19 @@ def ispandigital(n):
     if (len(iarr) == len(iarrs)):
         isp = 1
     return isp
+
+# Return nCr
+def nCr(n,r):
+    if r > n:
+        t = n
+        n = r
+        r = t
+    if r > n/2:
+        r = n-r
+    # izip generates the needed range of pairs (n-r,0), (n-r+1,1), ...
+    # The lambda form generates the list of pairs (n-1)C(r-1) nCr
+    # And reduce does the multiplication operaton over all elements in the list
+    # Grateously stolen from stackexchange
+    
+    ncr = reduce(lambda x, y: x * y[0] / y[1], izip(xrange(n - r + 1, n+1), xrange(1, r+1)), 1)
+    return ncr
