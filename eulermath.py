@@ -25,6 +25,10 @@ def int2array(n):
     nlist = [int(i) for i in str(n)]
     return nlist
 
+# Returns the nth triangle number
+def tri(n):
+    return n*(n+1)/2
+
 # Finds the factors of a given number
 #  and returns them in a list
 #  this form returns 1 and the number
@@ -40,6 +44,14 @@ def factors(n):
     factors = list(set(factors))
     factors.sort()
     return factors
+
+def wordworth(word):
+    worth = 0
+    alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    for letter in word:
+        # Add the index to the name value, account for the zero offset
+        worth += alphabet.index(letter) + 1
+    return worth
 
 # Tests to see if a number is pandigital
 def ispandigital(n):
@@ -63,6 +75,5 @@ def nCr(n,r):
     # The lambda form generates the list of pairs (n-1)C(r-1) nCr
     # And reduce does the multiplication operaton over all elements in the list
     # Grateously stolen from stackexchange
-    
     ncr = reduce(lambda x, y: x * y[0] / y[1], izip(xrange(n - r + 1, n+1), xrange(1, r+1)), 1)
     return ncr
