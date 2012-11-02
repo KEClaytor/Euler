@@ -6,7 +6,7 @@ from itertools import izip
 def isprime(n):
     prime = 1
     x = 2
-    while (x < n/2):
+    while (x < n/2+1):
         if n % x == 0:
             prime = 0 
             break
@@ -29,6 +29,14 @@ def int2array(n):
 def tri(n):
     return n*(n+1)/2
 
+# Integer element cyclic permutation
+def intcpermute(n):
+    sper = []
+    iword = str(n)
+    for x in range(1,len(iword)+1):
+        sper.append(iword)
+        iword = iword[1:] + iword[0]
+    return map(int, sper)
 # Finds the factors of a given number
 #  and returns them in a list
 #  this form returns 1 and the number
@@ -61,6 +69,21 @@ def ispandigital(n):
     iarrs = list(set(iarr))
     if (len(iarr) == len(iarrs)):
         isp = 1
+    return isp
+
+# Checks to see if a number is a palindrome
+def intreverse(n):
+    intstring = str(n)
+    return int(intstring[::-1])
+ 
+def ispalindrome(n):
+    isp = 1
+    pal = str(n)
+    lap = pal[::-1]
+    for ii in range(0,len(pal)):
+        if (pal[ii] != lap[ii]):
+            isp = 0
+            break
     return isp
 
 # Return nCr
