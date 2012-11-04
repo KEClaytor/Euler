@@ -61,6 +61,57 @@ def wordworth(word):
         worth += alphabet.index(letter) + 1
     return worth
 
+# takes in a roman numeral (string)
+#  and converts it to an integer
+#  In the case of failure, returns 0
+#  This error checking is not fully implemented yet
+def roman2int(rstr):
+    rchar = ["M","D","C","L","X","V","I"]
+    rval = [1000,500,100,50,10,5,1]
+    val = 0
+    ii = 0
+    while ii < len(rstr)-1:
+        cval = rval[rchar.index(rstr[ii])]
+        nval = rval[rchar.index(rstr[ii+1])]
+        if nval > cval:
+            val += nval-cval
+            ii += 2
+        else:
+            val += cval
+            ii += 1
+    # If we skipped two, we still need to do the last
+    if ii < len(rstr):
+        cval = rval[rchar.index(rstr[ii])]
+        val += cval
+    return val
+
+def int2roman(n):
+    # The only tricky thing here is we build the string in reverse order
+    r1s = "IXCM"
+    r5s = "VLD"
+    ind = 0
+    rstr = ""
+    if n < 4999:
+        while n > 0:
+            if n%10 >= 5:
+                if n%5==0:
+                    rstr += (r5s[ind])
+                elif n%5==4:
+                    rstr += (r1s[ind+1])
+                    rstr += (r1s[ind])
+                else:
+                    rstr += (r1s[ind]*(n%5))
+                    rstr += (r5s[ind])
+            else:
+                if (n%5==4)&(ind!=3):
+                    rstr += (r5s[ind])
+                    rstr += (r1s[ind])
+                else:
+                    rstr += (r1s[ind]*(n%5))
+            n = (n - n%5) / 10
+            ind += 1
+    return rstr[::-1]
+
 # Tests to see if a number is pandigital
 def ispandigital(n):
     isp = 0
