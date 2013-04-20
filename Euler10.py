@@ -1,13 +1,4 @@
-# Returns 0 for nonprime, and 1 for prime
-def isprime(n):
-    prime = 1
-    x = 2
-    while (x < n/2):
-        if n % x == 0:
-            prime = 0 
-            break
-        x += 1
-    return prime 
+from eulermath import isprime
 
 #nmax = 10 # test case, sum of primes below this = 17
 nmax = 2000000

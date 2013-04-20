@@ -1,4 +1,5 @@
 import math
+import array
 from itertools import izip
 
 #Subfunction that checks to see if a number is prime
@@ -151,3 +152,35 @@ def nCr(n,r):
     # Grateously stolen from stackexchange
     ncr = reduce(lambda x, y: x * y[0] / y[1], izip(xrange(n - r + 1, n+1), xrange(1, r+1)), 1)
     return ncr
+
+
+# The coin change problem can be solved by the help of generating functions
+#  from combinatorics
+# The ways of making change for p cents is the coefficient of x^p in
+#  expanding; 1/((1 - x)(1 - x^5)(1 - x^10)...(1 - x^largestchange))
+# For the reasoning, let's take the simple example of making change using
+#  only 5c pieces, we have 1 way of making zero cents, 1 way of making 5c, ...
+# Hence; 1 + x^5 + x^10 + x^15 = 1/(1 - x^5)
+# We multiply by the generating functions for other coin denominations
+#  to obtain the above sequence. I'll implement this method for finding that
+#  coefficient;
+# http://math.stackexchange.com/questions/176363/keep-getting-generating-function-wrong/176397#176397
+def coinage(amt,coins):
+    rval = 0
+    # Make sure that we have a set of coins
+    if len(coins) > 0:
+        if (amt < coins[-1]):
+            # we have to populate at least up to the max coin value
+            val = amt
+            amt = coins[-1]
+        else:
+            val = amt
+        c = array.array('i',(0,)*(amt+1))
+        c[0] = 1
+        for k in coins:
+            for i in range(amt-k+1):
+                c[i+k] += c[i]
+        rval = c[val]     
+    return rval
+
+
