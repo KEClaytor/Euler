@@ -5,26 +5,39 @@ from itertools import izip
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
 def isprime(n):
-    prime = 1
-    x = 2
-    while (x < n/2+1):
-        if n % x == 0:
-            prime = 0 
-            break
-        x += 1
-    return prime 
+	if n > 1:
+		prime = 1
+		x = 2
+		while (x < n/2+1):
+			if (n % x == 0):
+				prime = 0 
+				break
+			x += 1
+	else:
+		prime = 0
+	return prime 
+
+# Another isprime function that searches our primelist
+def isprimelist(n):
+	pfile = open("eplist.dat")
+	plist = [int(x) for x in pfile]
+	prime = plist.count(n)
+	return prime
 
 # Function that transforms a number into a list of digits
-#def int2array(n):
-#    nlist = []
-#    while (n > 0):
-#        nlist.append(n % 10)
-#        n /= 10 
-#    nlist.reverse()
-#    return nlist
 def int2array(n):
     nlist = [int(i) for i in str(n)]
     return nlist
+
+# And the reverse
+def array2int(arr):
+	rint = 0
+	if (len(arr) > 0):
+		arrstr = ''
+		for x in arr:
+			arrstr = ''.join([arrstr,str(x)])
+		rint = int(arrstr)
+	return rint
 
 # Returns the nth triangle number
 def tri(n):
@@ -38,6 +51,7 @@ def intcpermute(n):
         sper.append(iword)
         iword = iword[1:] + iword[0]
     return map(int, sper)
+
 # Finds the factors of a given number
 #  and returns them in a list
 #  this form returns 1 and the number

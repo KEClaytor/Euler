@@ -4,13 +4,22 @@
 
 from eulermath import isprime
 # Load up the list and see what the last prime that we added was
+# Make sure that we can write the file later
+pfile = open("eplist.dat","r+")
+for line in pfile:
+	pass
+lastprime = int(line)
 
 # Begin adding primes from that value on.
-n = 3
-while (n < 1000):
+n = lastprime+2
+nadded = 0
+while (nadded < 1000):
     if(isprime(n) == 1):
-        print n
+		pfile.write(str(n))
+		pfile.write('\n')
+		nadded += 1
     n += 2
+
 # Puzzle Thomas gave me:
 #form 24 out of 1, 3, 4, 6
 #4*6 = 24
