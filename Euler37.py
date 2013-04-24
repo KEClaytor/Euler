@@ -45,26 +45,24 @@ def istruncprime(n):
 		if (istplr and istprl):
 			istp = 1
 	return istp
-		
-print "Some test cases:"
-print "  Is 3797 a truncatable prime?: " + repr(istruncprime(3797))
-print "  Is 7 a truncatable prime?: " + repr(istruncprime(7))
-print "  Is 47 a truncatable prime?: " + repr(istruncprime(47))
 
-# Start going through our prime list
-# Until we have found 11 truncatable primes
-# And return their sum
-pfile = open("eplist.dat")
+# Start generating truncatable primes from the possible list of single digit primes
+bp = ['1','2','3','5','7','9']
+nl = bp
 
-plist = []
-for line in pfile:
-	ptest = int(line)
-	if (ptest > 10):
-		if istruncprime(ptest):
-			print "Found a truncatable prime: " + repr(ptest)
-			plist.append(ptest)
-		if (len(plist) == 11):
-			break
-print repr(len(plist)) + " truncatable primes found."
-print "The sum of the truncatable primes is: " + repr(sum(plist))
+tprimes = []
+while (len(tprimes) < 11):
+	nl = [x+y for x in nl for y in bp]
+	#print nl
+	for x in nl:
+		testval = int(x)
+		if istruncprime(testval):
+			print "Found one: " + repr(testval)
+			tprimes.append(testval)
+	
+print tprimes
+print "The sum of the truncatable primes is: " + repr(sum(tprimes))
+
+
+
 
