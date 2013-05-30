@@ -31,13 +31,13 @@ def int2array(n):
 
 # And the reverse
 def array2int(arr):
-	rint = 0
-	if (len(arr) > 0):
-		arrstr = ''
-		for x in arr:
-			arrstr = ''.join([arrstr,str(x)])
-		rint = int(arrstr)
-	return rint
+    rint = 0
+    if (len(arr) > 0):
+        arrstr = ''
+        for x in arr:
+            arrstr = ''.join([arrstr,str(x)])
+    rint = int(arrstr)
+    return rint
 
 # Returns the nth triangle number
 def tri(n):
