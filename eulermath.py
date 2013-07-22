@@ -1,6 +1,7 @@
 import math
 import array
 from itertools import izip
+from itertools import permutations
 
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
@@ -68,6 +69,14 @@ def factors(n):
     factors.sort()
     return factors
 
+def primefactors(n):
+    allfac = factors(n)
+    primefac = []
+    for fac in allfac:
+        if isprime(fac):
+            primefac.append(fac)
+    return primefac
+
 def wordworth(word):
     worth = 0
     alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -132,10 +141,19 @@ def ispandigital(n):
     isp = 0
     iarr = int2array(n)
     iarr.sort()
-    iarrs = list(set(iarr))
-    if (len(iarr) == len(iarrs)):
+    rint = range(1,len(iarr)+1)
+    if (iarr == rint):
         isp = 1
     return isp
+
+# Makes all pandigital numbers of length n
+# Returns in a list
+def makepandigital(n, reverse=False):
+    rint = range(1,n+1)
+    if reverse:
+        rint.reverse()
+    perms = permutations(rint,n)
+    return perms
 
 # Checks to see if a number is a palindrome
 def intreverse(n):
