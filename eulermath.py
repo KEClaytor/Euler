@@ -43,6 +43,40 @@ def array2int(arr):
 # Returns the nth triangle number
 def tri(n):
     return n*(n+1)/2
+# Returns the nth pentagonal number
+def pent(n):
+    return n*(3*n-1)/2
+# Returns the nth hexagonal number
+def hex(n):
+    return n*(2*n-1)
+
+# Tests to see if a number is triangular
+#  (pentagonal, hexagonal), and returns
+#  the index of that number, or zero if it is not
+# Eg; x = tri(n) -> returns n
+# We can ignore the negative root as we are not
+#  intrested in n<0
+def istri(x):
+    ist = 0
+    n = (-1 + math.sqrt(1+8*x) )/2
+    if not isinstance(n, complex):
+        if n == round(n):
+            ist = n
+    return ist
+def ispent(x):
+    isp = 0
+    n = (1 + math.sqrt(1+24*x) )/6
+    if not isinstance(n, complex):
+        if n == round(n):
+            isp = n
+    return isp
+def ishex(x):
+    ish = 0
+    n = (1 + math.sqrt(1+8*x) )/4
+    if not isinstance(n, complex):
+        if n == round(n):
+            ish = n
+    return ish
 
 # Integer element cyclic permutation
 def intcpermute(n):
