@@ -181,12 +181,13 @@ def ispandigital(n):
     return isp
 
 # Makes all pandigital numbers of length n
-# Returns in a list
-def makepandigital(n, reverse=False):
-    rint = range(1,n+1)
+# Returns an iterator
+def makepandigital(n, reverse=False, low=1):
+    rint = range(low,n+1)
     if reverse:
         rint.reverse()
-    perms = permutations(rint,n)
+    npermute = n+1-low
+    perms = permutations(rint,npermute)
     return perms
 
 # Checks to see if a number is a palindrome
