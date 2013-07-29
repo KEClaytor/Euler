@@ -1,7 +1,7 @@
 import math
 import array
 from itertools import izip
-from itertools import permutations
+from itertools import permutations, combinations
 
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
@@ -17,6 +17,14 @@ def isprime(n):
 	else:
 		prime = 0
 	return prime 
+
+# Find prime numbers in a list
+def find_primes_in_list(testlist):
+    prime_list = []
+    for val in testlist:
+        if isprime(val):
+            prime_list.append(val)
+    return prime_list
 
 # Another isprime function that searches our primelist
 def isprimelist(n):
@@ -257,4 +265,30 @@ def coinage(amt,coins):
         rval = c[val]     
     return rval
 
-
+# Determine if this list is an arithemetric series
+def is_arith_series(test):
+    tl = list(test)
+    tl.sort()
+    isas = False
+    if len(list(set(arraydiff(tl)))) == 1:
+        isas = True
+    return isas
+    
+# We want to find an arithemetric series of some length in this sequence
+def find_arithemetric_series(testlist, a_len = 0):
+    series = []
+    if a_len == 0:
+        # Get the sub-lists of various length
+        for m in range(2,len(testlist)+1):
+            combs = [ii for ii in combinations(testlist,m)]
+            for tl in combs:
+                if is_arith_series(tl):
+                    series.append(tl)
+    else:
+        # Otherwise just get the arithemetric series of a particular length
+        combs = [ii for ii in combinations(testlist,a_len)]
+        for tl in combs:
+            if is_arith_series(tl):
+                series.append(tl)
+    return series
+ 

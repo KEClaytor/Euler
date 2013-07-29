@@ -1,36 +1,31 @@
 # Find the one other sequence of 4-digit permuted increasing primes
 #  The first is; 1487, 4817, 8147 (difference is 3330)
-from eulermath import isprime, array2int, int2array, arraydiff
-from itertools import permutations
+from eulermath import isprime, int2array, array2int, find_primes_in_list, find_arithemetric_series
+from itertools import permutations, combinations
 
-def find_primes_in_perm(perm_list):
-    prime_list = []
-    for x in perm_list:
-        val = array2int(x)
-        if isprime(val) and val>1000:
-            prime_list.append(val)
-    return list(set(prime_list))
- 
-exclude = []
 # Start by finding all 4-digit primes
+print "Finding arithemetric series of primes between 1001 and 9999:"
+exclude = []
 for trial in xrange(1001,9999,2):
     if trial not in exclude:
         if isprime(trial):
-            # See if the prime has at least 2 permutations amongst the set
+            # Find the permutations of this number
             tp = permutations(int2array(trial))
-            tp.next() # we don't need to try ourself
-            tpp = find_primes_in_perm(tp)
-            if len(tpp) == 3:
-                #for x in tpp:
-                #    print x
-                tpp.sort()
-                diff_vec = list(set(arraydiff(tpp)))
-                diff_length = len(diff_vec)
-                if diff_length == 1:
-                    print ""
-                    print "Found a group of 3"
-                    print tpp
-                    print diff_vec
-                    print "length = %d" % (diff_length)
-            # And skip the others
+            # Get the unique values and sort them
+            tpl = list(set([array2int(x) for x in tp]))
+            tpp = find_primes_in_list(tpl)
+            tpn = []
+            for x in tpp:
+                if x > 1000: tpn.append(x)
+            # Exclude the others
+            for p in tpn:
+                exclude.append(p)
+            # Find any arithemetric series of length 3 in the prime list
+            aseries = find_arithemetric_series(tpn,3)
+            if len(aseries) > 0:
+                print aseries
+                for series in aseries:
+                    print series
+                    cat = ''.join(str(elem) for elem in series)
+                    print "As a string: " + cat
 
