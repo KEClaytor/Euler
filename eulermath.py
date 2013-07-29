@@ -40,6 +40,13 @@ def array2int(arr):
     rint = int(arrstr)
     return rint
 
+# returns the difference of consecutive elements in an array
+def arraydiff(arr):
+    d = []
+    for ii in range(len(arr)-1):
+        d.append(arr[ii+1] - arr[ii])
+    return d
+
 # Returns the nth triangle number
 def tri(n):
     return n*(n+1)/2
