@@ -21,6 +21,7 @@ def checksub(pan):
 plist = makepandigital(9)
 prodlist = []
 prodsum = 0
+prodsumlist = []
 for pan in plist:
     prods = checksub(pan)
     if len(prods) > 0:
@@ -41,7 +42,9 @@ for pan in plist:
                 prodsum += no[2]
                 na += 1
             print "Appended %d of those" % (na)
+            prodsumlist.append(prod[2])
 
 print prodlist
 print "There are %d unique 1-9 pandigital products." % (len(prodlist))
 print "The sum of their products is: %d" % (prodsum)
+print "The sum of the unique products is: %d" % (sum(list(set(prodsumlist))))
