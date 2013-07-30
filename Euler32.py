@@ -20,6 +20,7 @@ def checksub(pan):
 
 plist = makepandigital(9)
 prodlist = []
+prodsum = 0
 for pan in plist:
     prods = checksub(pan)
     if len(prods) > 0:
@@ -30,15 +31,17 @@ for pan in plist:
             no = (prod[0], prod[1], prod[2])
             ro = (prod[1], prod[0], prod[2])
             na = 0
-            if (no in prodlist):
-                print repr(no) + " no already in" 
-            if (ro in prodlist):
-                print repr(ro) + " ro already in" 
+            #if (no in prodlist):
+            #    print repr(no) + " no already in" 
+            #if (ro in prodlist):
+            #    print repr(ro) + " ro already in" 
             if (no not in prodlist) and (ro not in prodlist):
-                print "appending " + repr(no)
+                #print "appending " + repr(no)
                 prodlist.append(no)
+                prodsum += no[2]
                 na += 1
             print "Appended %d of those" % (na)
 
 print prodlist
 print "There are %d unique 1-9 pandigital products." % (len(prodlist))
+print "The sum of their products is: %d" % (prodsum)
