@@ -34,6 +34,13 @@ def isprimelist(n):
 	prime = plist.count(n)
 	return prime
 
+# Quickly return the nth prime from our list
+def nthprime(n):
+    pfile = open("eplist.dat")
+    for x in range(n-1):
+        pfile.readline()
+    return int(pfile.readline())
+
 # Function that transforms a number into a list of digits
 def int2array(n):
     nlist = [int(i) for i in str(n)]
