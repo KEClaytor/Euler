@@ -2,6 +2,7 @@ import math
 import array
 from itertools import izip
 from itertools import permutations, combinations
+from fractions import Fraction
 
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
@@ -292,3 +293,18 @@ def find_arithemetric_series(testlist, a_len = 0):
                 series.append(tl)
     return series
  
+###
+### Functions for working with continued fractions
+###
+
+# Helper function to make a string of a fraction
+def frac2str(frac):
+    return "%d/%d"%(frac.numerator,frac.denominator)
+
+def makecontfrac(arr):
+    if len(arr) > 1:
+        rfrac = Fraction(arr[0],1) + 1/makecontfrac(arr[1::])
+    else:
+        rfrac = Fraction(1,arr[0])
+    return rfrac
+

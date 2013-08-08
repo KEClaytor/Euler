@@ -3,7 +3,7 @@
 #   of sqrt(2)
 
 from fractions import Fraction
-from eulermath import int2array
+from eulermath import int2array, frac2str
 
 def haslongnum(frac):
     ln = 0
@@ -15,10 +15,6 @@ def haslongnum(frac):
 def nextterm(lastterm):
     nextterm = 1 + 1/(lastterm+1)
     return nextterm
-
-# Helper function to make a string of a fraction
-def frac2str(frac):
-    return "%d/%d"%(frac.numerator,frac.denominator)
 
 nt = Fraction(1,1)
 nln = 0 # Number with a longer numerator
