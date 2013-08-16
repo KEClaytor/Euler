@@ -3,6 +3,7 @@ import array
 from itertools import izip
 from itertools import permutations, combinations
 from fractions import Fraction
+import numpy
 
 #Subfunction that checks to see if a number is prime
 # Returns 0 for nonprime, and 1 for prime
@@ -40,6 +41,17 @@ def nthprime(n):
     for x in range(n-1):
         pfile.readline()
     return int(pfile.readline())
+
+# Stac numpy based prime sieve
+def primesieve(n):
+    """ Input n>=6, Returns a array of primes, 2 <= p < n """
+    sieve = numpy.ones(n/3 + (n%6==2), dtype=numpy.bool)
+    for i in xrange(1,int(n**0.5)/3+1):
+        if sieve[i]:
+            k=3*i+1|1
+            sieve[       k*k/3     ::2*k] = False
+            sieve[k*(k-2*(i&1)+4)/3::2*k] = False
+    return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
 
 # Function that transforms a number into a list of digits
 def int2array(n):
