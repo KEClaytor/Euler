@@ -315,3 +315,12 @@ def makecontfrac(arr):
         rfrac = Fraction(1,arr[0])
     return rfrac
 
+# Histogram-ing function: takes in a list and returns
+#  the sorted unique values of that list
+#  and their corresponding counts
+def hist(listin):
+    outvals = list(set(listin))
+    outvals.sort()
+    outcnts = [listin.count(x) for x in outvals]
+    return (outvals, outcnts)
+
