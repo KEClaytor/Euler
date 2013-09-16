@@ -27,7 +27,12 @@ def replaceprime(prime):
     return pgroup
 
 if __name__ == "__main__":
-    for ndig in range(6,9):
+    fam_test_size = 6
+    # We have the solutions for a 6 and 7 family size, make sure we get these back
+    print "Printing primes, family size, and minimum prime in family"
+    print "Also printing full familly for check"
+    for ndig in range(2,9):
+        # We want these two to be discrete
         primes = list(primesieve(10**ndig))
         primescheck = set(primesieve(10**ndig))
         #print "Primes"
@@ -41,8 +46,11 @@ if __name__ == "__main__":
                 #print primes_in_test
                 famsize = len(primes_in_test)
                 #print "Prime and family size:"
-                if famsize >= 8:
-                    print prime, famsize
+                if famsize >= fam_test_size:
+                    fam_test_size += 1
+                    print
+                    print prime, famsize, min(primes_in_test)
+                    print primes_in_test
                 # Remove other primes whose families we have found
                 for ppop in primes_in_test:
                     try:
