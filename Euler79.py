@@ -47,9 +47,8 @@ def trim(totrim,counts,minv=0,maxv="inf"):
     return trimmed
 
 # Make some potential keys
-def make_potential_keys(start=0,end=0,midvals=[00]):
-    
-potnetial_keys = make_potential_keys(start=7,end=0,midpairs=flatten([t12[0],t23[0]]))
+def make_potential_keys(start=0,end=0,midpairs=[00]):
+    potential_keys = make_potential_keys(start=7,end=0,midpairs=flatten([t12[0],t23[0]]))
     
 # Import the data
 sub = []
@@ -96,7 +95,7 @@ print trim([v23,c23],c23,2)
 
 t12 = trim([v12,c12],c12,2)
 t23 = trim([v23,c23],c23,2)
-potnetial_keys = make_potential_keys(start=7,end=0,midpairs=flatten([t12[0],t23[0]]))
+potential_keys = make_potential_keys(start=7,end=0,midpairs=flatten([t12[0],t23[0]]))
 
 print potential_keys
 
