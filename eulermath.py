@@ -146,6 +146,31 @@ def primefactors(n):
             primefac.append(fac)
     return primefac
 
+# A faster prime factorization using the prime sieve
+def primefac(n):
+    if n < 6:
+        primes = primesieve(6)
+    else:
+        primes = primesieve(n+1)
+    pf = []
+    while n not in primes:
+        for x in primes:
+            if n%x == 0:
+                pf.append(x)
+                n = n/x
+                break
+    pf.append(n)
+    return hist(pf)
+
+# The euler phi / totient function
+def eulerphi(val):
+    ep = val
+    if val > 1:
+        [p,n] = primefac(val)
+        for ii in range(len(p)):
+            ep *= ( 1 - 1/(1.0*p[ii]) )
+    return int(ep)
+
 def wordworth(word):
     worth = 0
     alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
