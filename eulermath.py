@@ -3,6 +3,7 @@ import array
 from itertools import izip
 from itertools import permutations, combinations
 from fractions import Fraction
+import random
 import numpy
 
 #Subfunction that checks to see if a number is prime
@@ -35,6 +36,24 @@ def isprimelist(n):
 	prime = plist.count(n)
 	return prime
 
+# A faster check for prime numbers
+def isprimeFermat(number):
+    # if number != 1
+    if (number > 1):
+        # repeat the test few times
+        for time in range(3):
+            # Draw a RANDOM number in range of number ( Z_number )
+            randomNumber = random.randint(2, number)-1
+
+            # Test if a^(n-1) = 1 mod n
+            if ( pow(randomNumber, number-1, number) != 1 ):
+                return False
+
+        return True
+    else:
+        # case number == 1
+        return False  
+
 # Quickly return the nth prime from our list
 def nthprime(n):
     pfile = open("eplist.dat")
@@ -52,6 +71,44 @@ def primesieve(n):
             sieve[       k*k/3     ::2*k] = False
             sieve[k*(k-2*(i&1)+4)/3::2*k] = False
     return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
+
+# Sieve of Eratosthenes
+# Code by David Eppstein, UC Irvine, 28 Feb 2002
+# http://code.activestate.com/recipes/117119/
+
+def gen_primes():
+    """ Generate an infinite sequence of prime numbers.
+    """
+    # Maps composites to primes witnessing their compositeness.
+    # This is memory efficient, as the sieve is not "run forward"
+    # indefinitely, but only as long as required by the current
+    # number being tested.
+    #
+    D = {}  
+
+    # The running integer that's checked for primeness
+    q = 2  
+
+    while True:
+        if q not in D:
+            # q is a new prime.
+            # Yield it and mark its first multiple that isn't
+            # already marked in previous iterations
+            # 
+            yield q        
+            D[q * q] = [q]
+        else:
+            # q is composite. D[q] is the list of primes that
+            # divide it. Since we've reached q, we no longer
+            # need it in the map, but we'll mark the next 
+            # multiples of its witnesses to prepare for larger
+            # numbers
+            # 
+            for p in D[q]:
+                D.setdefault(p + q, []).append(p)
+            del D[q]
+
+        q += 1
 
 # Function that transforms a number into a list of digits
 def int2array(n):
