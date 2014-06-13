@@ -30,13 +30,14 @@ def checkPrime(prime, pairs):
 if __name__ == "__main__":
     primeListLength = 3
     # First make our prime list
-    maxprime = 500000
+    maxprime = 100000
     primes = gen_primes()
     # Seed us with the pair (3,7) which forms 37 & 73, both prime
     # Search through the higher primes, seeing if they share the
     #   property for all primes in this set
     #   This allows us to form the length 3, 4, and 5 sets.
-    pairs = [(3,7)]
+    pairs = [(3,), (7,)]
+    length5pairs = []
     for prime in primes:
         if prime > maxprime:
             break
@@ -48,14 +49,23 @@ if __name__ == "__main__":
             for item in new:
                 print "adding: " + repr(item)
                 pairs.append(item)
+                if len(item) > 4:
+                    length5pairs.append(item)
             # Remove duplicates
             pairs = list(set(pairs))
             # Sort by length
             pairs = sorted(pairs, key=lambda val: len(val))
-            print "we now have:"
-            print pairs
-            if len(pairs[-1]) == 5:
-                break
+            #print "we now have:"
+            #print pairs
+            #if len(pairs[-1]) == 5:
+            #    break
 
-    print "First length-5 tuple found. It's probably the smallest sum:"
-    print pairs[-1], sum(pairs[-1])
+    #print "First length-5 tuple found. It's probably the smallest sum:"
+    #print pairs[-1], sum(pairs[-1])
+
+    # Look at all of the length-5 pairs we found
+    print "Found %d length-5 tuples with elements < %d. Here they are:" % (len(length5pairs), maxprime)
+    # Sort the pairs by their sum
+    length5pairs = sorted(length5pairs, key=lambda val: sum(val))
+    for pair in length5pairs:
+        print pair, sum(pair)
