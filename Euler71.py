@@ -12,6 +12,7 @@ def is_reduced_proper_fraction(num, denom):
     else:
         return False
 
+# This seemed like a good idea at the time
 def less_than_three_sevenths(num, denom):
     if num/denom < 3.0/7.0:
         return true
@@ -20,18 +21,21 @@ def less_than_three_sevenths(num, denom):
 
 # Maximum denominator
 maxd = 1000000.
-closest_num = 0
-closest_denom = 1
+closest_num = 0.
+closest_denom = 1.
 
 print "Searching with maximum denominator: %d" % (maxd)
 # We can rely on condition evaluation order in python
-for denom in xrange(maxd+1):
+for denom in xrange(maxd+1, 0, -1):
     # Evaluate this backwards until we find
     #  a reduced proper fraction < 3/7
-    for num in range(floor(denom*3.0/7.0)):
+    for num in xrange(floor(denom*3.0/7.0), 0, -1):
         if is_reduced_proper_fraction(num, denom):
-            closest_num = num
-            closest_denom = denom
-            print "Updating with %d/%d" % (num, denom)
+            if num*1.0/(denom*1.0) > closest_num*1.0/(closest_denom*1.0) and \
+                num*1.0/(denom*1.0) < 3.0/7.0:
+                closest_num = num
+                closest_denom = denom
+                print "Updating with %d/%d" % (num, denom)
+            break
 
 print "The closest reduced proper fraction is %d/%d" % (closest_num, closest_denom)
