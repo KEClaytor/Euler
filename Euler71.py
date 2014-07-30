@@ -2,13 +2,13 @@
 
 # ARGH current build doesn't have this
 #from future import division
-from eulermath import primefactors
+from eulermath import factors
 from math import floor
 
 def is_reduced_proper_fraction(num, denom):
-    common_factors = set(primefactors(num)) & \
-        set(primefactors(denom))
-    if len(common_factors) == 0:
+    common_factors = set(factors(num)) & \
+        set(factors(denom))
+    if len(common_factors) == 1:
         return True
     else:
         return False
@@ -29,7 +29,7 @@ diff = 3.0/7.0 - closest_num/closest_denom
 print "Searching with maximum denominator: %d" % (maxd)
 # Evaluate this backwards until we find
 #  a reduced proper fraction < 3/7
-for denom in xrange(maxd+1):
+for denom in xrange(maxd, 1, -1):
     # Only evaluate numerators that give us:
     #  a result < 3/7 (n_max)
     #  a result > closet_num/closest_denom (n_min)
