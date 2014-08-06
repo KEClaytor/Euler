@@ -211,6 +211,14 @@ def gcd(a, b):
     gcd = max(cf)
     return gcd
 
+# Determine if two factors are coprime
+def coprime(a,b):
+    ab_gcd = gcd(a,b)
+    if ab_gcd == 1:
+        return True
+    else:
+        return False
+
 # A faster prime factorization using the prime sieve
 def primefac(n):
     if n < 6:
