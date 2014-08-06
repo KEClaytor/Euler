@@ -203,6 +203,14 @@ def primefactors(n):
             primefac.append(fac)
     return primefac
 
+# Determine the greatest common factor / denominator of two values
+def gcd(a, b):
+    fa = factors(a)
+    fb = factors(b)
+    cf = set(fa).intersection(set(fb))
+    gcd = max(cf)
+    return gcd
+
 # A faster prime factorization using the prime sieve
 def primefac(n):
     if n < 6:
