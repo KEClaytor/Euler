@@ -22,22 +22,25 @@ def generate_primitive_triple():
 
 if __name__ == "__main__":
     ppt = generate_primitive_triple()
-    max = 100
-    num_triples = [0]*max
+    max_L = 1500000
+    num_triples = [0]*(max_L+1)
     triple = ppt.next()
     base_triple_sum = sum(triple)
-    while base_triple_sum <= max:
-        print "Current triple: " + repr(triple)
+    #while base_triple_sum <= max:
+    while max(triple) < max_L:
+        #print "Current triple: " + repr(triple)
         n = 1
         triple_sum = base_triple_sum
-        while triple_sum <= max:
-            print "    Has lengths: " + repr(triple_sum)
+        while triple_sum <= max_L:
+            #print "    Has lengths: " + repr(triple_sum)
             num_triples[triple_sum] += 1
             n += 1
             triple_sum = base_triple_sum*n
         triple = ppt.next()
         base_triple_sum = sum(triple)
-    print "We can form only one integer right triangle for %d lengths of wire < %d" % (num_triples.count(1), max)
+    print "We can form only one integer right triangle for %d lengths of wire < %d" % (num_triples.count(1), max_L)
+    #for ii in range(len(num_triples)):
+    #    print "Length: %d\t%d ways" % (ii, num_triples[ii])
     # Generate an array of zeros of length 1.5M
     # For each triple given sum(triple) < 1.5M
     #  While sum(triple) < 1.5M
