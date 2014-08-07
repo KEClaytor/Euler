@@ -1,6 +1,6 @@
 # Find the number of integer right triangles with
 #  side length < 1.5M and only one right triangle combination
-from eulermath import coprime
+from eulermath import coprime, arraymult
 
 # This is a generator for the primitive Pythagorean triples
 def generate_primitive_triple():
@@ -22,8 +22,22 @@ def generate_primitive_triple():
 
 if __name__ == "__main__":
     ppt = generate_primitive_triple()
-    for i in range(10):
-        print ppt.next()
+    max = 100
+    num_triples = [0]*max
+    triple = ppt.next()
+    base_triple_sum = sum(triple)
+    while base_triple_sum <= max:
+        print "Current triple: " + repr(triple)
+        n = 1
+        triple_sum = base_triple_sum
+        while triple_sum <= max:
+            print "    Has lengths: " + repr(triple_sum)
+            num_triples[triple_sum] += 1
+            n += 1
+            triple_sum = base_triple_sum*n
+        triple = ppt.next()
+        base_triple_sum = sum(triple)
+    print "We can form only one integer right triangle for %d lengths of wire < %d" % (num_triples.count(1), max)
     # Generate an array of zeros of length 1.5M
     # For each triple given sum(triple) < 1.5M
     #  While sum(triple) < 1.5M
