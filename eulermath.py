@@ -3,6 +3,8 @@ import array
 from itertools import izip
 from itertools import permutations, combinations
 from fractions import Fraction
+from collections import Sequence
+from itertools import chain, count
 import random
 import numpy
 
@@ -135,12 +137,52 @@ def arraydiff(arr):
 # Returns the nth triangle number
 def tri(n):
     return n*(n+1)/2
+# Returns the nth square number
+def sqr(n):
+    return n*n
 # Returns the nth pentagonal number
 def pent(n):
     return n*(3*n-1)/2
 # Returns the nth hexagonal number
 def hex(n):
     return n*(2*n-1)
+# Returns the nth Heptagonal number
+def hept(n):
+    return n*(5*n-3)/2
+# Returns the nth Octagonal number
+def oct(n):
+    return n(3*n-2)
+# Generator forms of the above
+def gen_tri():
+    n = 1
+    while True:
+        yield n*(n+1)/2
+        n += 1
+def gen_sqr():
+    n = 1
+    while True:
+        yield n*n
+        n += 1
+def gen_pent():
+    n = 1
+    while True:
+        yield n*(3*n-1)/2
+        n += 1
+def gen_hex():
+    n = 1
+    while True:
+        yield n*(2*n-1)
+        n += 1
+def gen_hept():
+    n = 1
+    while True:
+        yield n*(5*n-3)/2
+        n += 1
+def gen_oct():
+    n = 1
+    while True:
+        yield n*(3*n-2)
+        n += 1
 
 # Tests to see if a number is triangular
 #  (pentagonal, hexagonal), and returns
@@ -418,3 +460,13 @@ def hist(listin):
     outcnts = [listin.count(x) for x in outvals]
     return (outvals, outcnts)
 
+from collections import Sequence
+from itertools import chain, count
+
+# Finding the depth of a nested list
+# http://stackoverflow.com/questions/6039103/counting-deepness-or-the-deepest-level-a-nested-list-goes-to
+def depth(l):
+    if isinstance(l, list):
+        return 1 + max(depth(item) for item in l)
+    else:
+        return 0
