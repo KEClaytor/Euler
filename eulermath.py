@@ -127,6 +127,16 @@ def array2int(arr):
     rint = int(arrstr)
     return rint
 
+# Number of digits in an integer
+def nintdigits(x):
+    return len(int2array(x))
+
+# Return integers in list only if they are n digits or more
+def dropsmallint(arr, n):
+    ndig = map(nintdigits, arr)
+    longer_than_n = [arr[ii] for ii in range(len(arr)) if ndig[ii] > n]
+    return longer_than_n
+
 # returns the difference of consecutive elements in an array
 def arraydiff(arr):
     d = []
@@ -220,6 +230,15 @@ def intcpermute(n):
         sper.append(iword)
         iword = iword[1:] + iword[0]
     return map(int, sper)
+
+# Tests to see whether two integers are permutations of each other
+def ispermutation(x, y):
+   (xvals, xcnts) = hist(int2array(x))
+   (yvals, ycnts) = hist(int2array(y))
+   isperm = False
+   if (xvals == yvals) and (xcnts == ycnts):
+       isperm = True
+   return isperm
 
 # Finds the factors of a given number
 #  and returns them in a list
