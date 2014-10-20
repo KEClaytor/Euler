@@ -2,6 +2,13 @@
 # Find the smallest cube where five permutations
 #  of it's digits are also cubes
 
+# This implementation does not come up with the correct answer
+#  but we do estabilsh some bounds.
+#  345 < n < 5027
+# Problem: we need to identify cubic permutations that are larger
+#  than the max int
+#  there is likely some trick with the cubes...
+
 from eulermath import array2int, int2array, nintdigits, ispermutation
 
 def find_perm_pairs(arr):
@@ -17,14 +24,16 @@ def find_perm_pairs(arr):
 
 if __name__ == "__main__":
     # Test case, should come up with longest combo: 3
-    #                   min cube for combo: 345
-    #mylist = range(1,1000)
-    mylist = range(1, 10000)
+    #                           min cube for combo: 345
+    #mylist = range(1,500)
+    mylist = range(15000)
     cubes = map(lambda(x): x**3, mylist)
     # Now see if the cubes are permutations of each other
     combos = find_perm_pairs(cubes)
     combo_lengths = map(len, combos)
     max_combo_length = max(combo_lengths)
     min_cube_for_combo = combo_lengths.index(max_combo_length)
+    # We want the first 5-length combo
+    min_cube_for_combo = combo_lengths.index(5)
     print "max combo length: %d, min cube for combo: %d" % \
         (max_combo_length, min_cube_for_combo+1)
