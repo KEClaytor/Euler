@@ -132,6 +132,12 @@ def arraydiff(arr):
         d.append(arr[ii+1] - arr[ii])
     return d
 
+# Multiplies an array by a scalar
+def arraymult(arr, scalar):
+    for ii in range(len(arr)):
+        arr[ii] = arr[ii]*scalar
+    return arr
+
 # Returns the nth triangle number
 def tri(n):
     return n*(n+1)/2
