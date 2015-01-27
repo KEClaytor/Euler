@@ -1,4 +1,4 @@
-if __name__ == "main":
+if __name__ == "__main__":
     n = input("Max bound?: ")
     total = 0
     for ii in range(1, n):

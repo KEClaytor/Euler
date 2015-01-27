@@ -1,7 +1,7 @@
 # 2520 is the samllest that is evenly divided by 1 through 10
 # What about 1 through 20?
 
-if __name__ == "main":
+if __name__ == "__main__":
     # Test case, should give 2520
     # divisors = range(1, 11)
     # Full case

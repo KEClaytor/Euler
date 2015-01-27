@@ -3,7 +3,7 @@
 
 # Brute force method
 
-if __name__ == "main":
+if __name__ == "__main__":
     # fmax = 90 # should give 44
     fmax = 4000000
     fibsum = 0

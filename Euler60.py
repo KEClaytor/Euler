@@ -25,31 +25,35 @@ def checkPrime(prime, pairs):
         if possible:
             new = (prime,) + pair
             cps.append(new)
+        #else:
+        #    cps.append((prime,))
     return cps
 
 if __name__ == "__main__":
     primeListLength = 3
     # First make our prime list
-    maxprime = 100000
+    maxprime = 10000    # Previous runs have limited this number
     primes = gen_primes()
     # Seed us with the pair (3,7) which forms 37 & 73, both prime
     # Search through the higher primes, seeing if they share the
     #   property for all primes in this set
     #   This allows us to form the length 3, 4, and 5 sets.
-    pairs = [(3,), (7,)]
+    pairs = [(3,),(7,),(11,),(13,),(17,),(19,),(23,)]
     length5pairs = []
     for prime in primes:
         if prime > maxprime:
             break
+        elif prime%(maxprime/10) == 0:
+            print "10%"
         if prime < 8:
             continue
         # Get the possible lists we have
         new = checkPrime(prime, pairs)
         if new:
             for item in new:
-                print "adding: " + repr(item)
                 pairs.append(item)
                 if len(item) > 4:
+                    print "adding: " + repr(item) + " sum: " + repr(sum(item))
                     length5pairs.append(item)
             # Remove duplicates
             pairs = list(set(pairs))

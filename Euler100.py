@@ -27,12 +27,17 @@ from math import ceil, floor
 def test(b, s):
     return 2*b*(b-1) == s*(s-1)
 
-for jj in xrange(10000000):
+for jj in xrange(100000000):
     s = int(10**12 + jj)
+    # Exact
+    #b_float = (1 + (1 + 2*s**2)**0.5)/2
+    # Approx
     b_float = s / (2**0.5)
     b_lower = int(floor(b_float))
     b_upper = int(ceil(b_float))
-    if test(b_lower, s):
-        print b_lower, s
-    if test(b_upper, s):
-        print b_upper, s
+    if b_lower == int(b_float):
+        if test(b_lower, s):
+            print b_lower, s
+    else:
+        if test(b_upper, s):
+            print b_upper, s

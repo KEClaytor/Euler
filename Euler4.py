@@ -15,7 +15,7 @@ def ispalindrome(plist):
             break
     return ispal
 
-if __name__ == "main":
+if __name__ == "__main__":
     # n = 99 # Test case, should give 9009
     n = 999
     largest = 0

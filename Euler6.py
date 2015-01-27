@@ -1,4 +1,4 @@
-if __name__ == "main":
+if __name__ == "__main__":
     # Test case, should give 2640
     # n = 10
     # Full case

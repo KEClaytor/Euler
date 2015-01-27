@@ -1,7 +1,7 @@
 import sys
 from eulermath import isprime
 
-if __name__ == "main":
+if __name__ == "__main__":
     # n = 10
     # n = 13195 #should give 29
     n = 600851475143

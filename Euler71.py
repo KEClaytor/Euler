@@ -34,8 +34,8 @@ for denom in xrange(max_denom, 1, -1):
     # Only evaluate numerators that give us:
     #  a result < 3/7 (n_max)
     #  a result > closet_num/closest_denom (n_min)
-    n_max = floor(denom*3.0/7.0)
-    n_min = floor(closest_num/closest_denom * (denom*1.0))
+    n_max = int(floor(denom*3.0/7.0))
+    n_min = int(floor(closest_num/closest_denom * (denom*1.0)))
     if n_max > n_min:
         #print "d: %d\t n_min: %d\t n_max: %d\t delta_n: %d" %(denom, n_min, n_max, n_max-n_min)
         for num in xrange(n_max, n_min, -1):

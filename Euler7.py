@@ -1,6 +1,6 @@
 from eulermath import isprime
 
-if __name__ == "main":
+if __name__ == "__main__":
     # Start looking for primes at 3 - skip all the
     # evens because they are not prime
     # test case, the 10th prime is 29

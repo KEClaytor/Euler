@@ -1,6 +1,6 @@
 from eulermath import isprime
 
-if __name__ == "main":
+if __name__ == "__main__":
     # Test case, should give 17
     # nmax = 10
     nmax = 2000000
