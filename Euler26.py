@@ -15,6 +15,7 @@
 from eulermath import primefactors
 from time import sleep
 
+
 # Returns 1 if the value 1/n is a terminating decimal
 #  0 otherwise
 def istermdec(n):
@@ -23,11 +24,14 @@ def istermdec(n):
         td = 1
     else:
         pfac = primefactors(n)
-        if 2 in pfac: pfac.remove(2)
-        if 5 in pfac: pfac.remove(5)
+        if 2 in pfac:
+            pfac.remove(2)
+        if 5 in pfac:
+            pfac.remove(5)
         if not pfac:
             td = 1
     return td
+
 
 # Returns the length of the recurring cycle of 1/n
 def ncycle(n):
@@ -36,8 +40,8 @@ def ncycle(n):
         lpow = 1
         foundcycle = 0
         while not foundcycle:
-            for mpow in range(lpow-1,0,-1):
-                if (10**lpow - 10**mpow)%n == 0:
+            for mpow in range(lpow-1, 0, -1):
+                if (10**lpow - 10**mpow) % n == 0:
                     cyclelen = lpow-mpow
                     foundcycle = 1
                     break
@@ -45,17 +49,17 @@ def ncycle(n):
     return cyclelen
 
 # Test case, print out the length of the cycles for the first 14 integers
-#dmax = 14
-#for d in range(1,dmax):
-#    print ncycle(d) 
+# dmax = 14
+# for d in range(1,dmax):
+#    print ncycle(d)
 
-# Now the full 1000 integers
-dlimit = 1000
-cyclelen = []
-for d in range(dlimit):
-    cyclelen.append(ncycle(d+1))
+if __name__ == "__main__":
+    # Now the full 1000 integers
+    dlimit = 1000
+    cyclelen = []
+    for d in range(dlimit):
+        cyclelen.append(ncycle(d+1))
 
-cmax = max(cyclelen)
-dmax = cyclelen.index(cmax)+1
-print "1/%d has the longest cycle at a length of %d" % (dmax,cmax)
-
+    cmax = max(cyclelen)
+    dmax = cyclelen.index(cmax)+1
+    print "1/%d has the longest cycle at a length of %d" % (dmax, cmax)
