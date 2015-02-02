@@ -6,11 +6,12 @@ from eulermath import nCr
 # We also know that if nCr > 1M then nC(r+1) > 1M IF
 #  r+1 < n-p where p is min(m) where nCm > 1M
 
-numways = 0
-for n in range(23,101):
-    for r in range(1,n):
-        if nCr(n,r) >= 1000000:
-            numways += n+1 - 2*r
-            continue
+if __name__ == "__main__":
+    numways = 0
+    for n in range(23, 101):
+        for r in range(1, n):
+            if nCr(n, r) >= 1000000:
+                numways += n+1 - 2*r
+                continue
 
-print numways
+    print numways

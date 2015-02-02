@@ -1,13 +1,15 @@
-# Form a spiral of numbers, interestingly there are quite a few primes on the diagonal.
+# Form a spiral of numbers, interestingly there are quite a few
+# primes on the diagonal.
 # for what side length does the ratio of primes fall to <10%?
 
 from __future__ import division
 from eulermath import primesieve
 
+
 # Get all the diagonal values for a given (odd) side length
 def getdiags(side):
     offset = (side-2)**2 + (side-1)
-    diag = range(offset,side**2+1,side-1)
+    diag = range(offset, side**2+1, side-1)
     return diag
 
 if __name__ == "__main__":
@@ -28,4 +30,5 @@ if __name__ == "__main__":
         print side, fracprime
         side += 2
 
-    print "Side length for which the ratio of primes is < 10% is: " + repr(side-2)
+    print ("Side length for which the ratio of primes is < 10% is: " +
+           repr(side-2))

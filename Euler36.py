@@ -2,6 +2,7 @@
 # Sum them up all of them < 1M
 from eulermath import ispalindrome
 
+
 def make_palindrome_half(n):
     superlist = []
     if n > 0:
@@ -12,6 +13,7 @@ def make_palindrome_half(n):
     else:
         superlist = ['1', '0']
     return superlist
+
 
 def str_bin2int(sb):
     myval = 0
@@ -41,7 +43,8 @@ if __name__ == "__main__":
     palsum = 0
     for palindrome in plistfull:
         intval = str_bin2int(palindrome)
-        print repr(palindrome) + ' ' + repr(intval) + ' ' + repr(ispalindrome(intval))
+        print (repr(palindrome) + ' ' + repr(intval) + ' ' +
+               repr(ispalindrome(intval)))
         if intval < 10**6:
             if ispalindrome(intval):
                 palsum += intval

@@ -3,10 +3,11 @@
 
 from eulermath import makepandigital, array2int
 
+
 # Returns 0 if it does not form a concatenated product of
 #  exactly maxlen, otherwise it returns the concatenated
 #  product (this restriction is relaxed if soft = True)
-def makecatprod(start,maxlen,soft=False):
+def makecatprod(start, maxlen, soft=False):
     rval = 0
     num = ''
     seq = [start]
@@ -22,6 +23,7 @@ def makecatprod(start,maxlen,soft=False):
             rval = int(num)
     return rval
 
+
 # Takes in a pandigital number and determines if it can
 #  be formed by concatenating the product of an integer
 # We do this by taking the first n digits, and multiplying
@@ -31,17 +33,18 @@ def findpancat(pan):
     rval = 0
     ipan = array2int(pan)
     # We only need to search for something < 5 digits
-    for ii in range(1,6):
+    for ii in range(1, 6):
         start = array2int(pan[0:ii])
-        cprod = makecatprod(start,9)
+        cprod = makecatprod(start, 9)
         if cprod == ipan:
             rval = 1
     return rval
 
-plist = makepandigital(9,True)
-for pan in plist:
-    findpancat(pan)
-    if findpancat(pan):
-        print "The largest pandigital that can be formed as a concatenated product is: %d" % (array2int(pan))
-        break
-
+if __name__ == "__main__":
+    plist = makepandigital(9, True)
+    for pan in plist:
+        findpancat(pan)
+        if findpancat(pan):
+            print ("The largest pandigital that can be formed " +
+                   "as a concatenated product is: %d" % (array2int(pan)))
+            break

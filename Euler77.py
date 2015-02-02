@@ -15,15 +15,16 @@ nways = 0
 for line in pfile:
     cprime = int(line)
     while (n <= cprime):
-        nways = coinage(n,plist)
+        nways = coinage(n, plist)
         if (nways > 5000):
-            print repr(n) + " is the first value that can be written as a sum of primes in more than 5000 ways."
+            print (repr(n) + " is the first value that can be " +
+                   "written as a sum of primes in more than 5000 ways.")
             break
         n += 1
     # Check again with our condition - there has to be a better way for this...
     if (nways > 5000):
         break
         # Debugging
-        # print "Value: " + repr(n) + " has " + repr(nways) + " ways of being written with smaller primes."
+        # print ("Value: " + repr(n) + " has " + repr(nways) +
+        #        " ways of being written with smaller primes.")
     plist.append(cprime)
-

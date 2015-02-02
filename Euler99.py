@@ -15,10 +15,9 @@ for line in fname:
     cline += 1
     base = int(row[0])
     exp = int(row[1])
-    if (exp*log(base) > lexp*log(lbase) ):
+    if (exp*log(base) > lexp*log(lbase)):
         lline = cline
         lbase = base
         lexp = exp
 
 print "The line with the largest exponential is: " + repr(lline)
-
